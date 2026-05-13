@@ -45,6 +45,22 @@ Para concluir este projeto, você deverá entregar:
 4.  **Documento de Decisões Arquiteturais:**
     - Uma atualização no `docs/decisions.md` explicando o design do agente, o grafo de estados e os contratos MCP definidos.
 
+## 🏆 Desafio Bônus: Observabilidade
+
+Para elevar o projeto a um nível de produção, implemente funcionalidades de observabilidade:
+
+1.  **Rastreamento de Chamadas (Tracing):**
+    - Instrumente as chamadas para o LLM e para as ferramentas (como a API RAG) usando **OpenTelemetry**.
+    - O objetivo é rastrear a latência, o custo (contagem de tokens) e o fluxo de cada execução do agente.
+    - Ferramentas como **LangSmith** ou **Arize AI** são excelentes para visualizar esses traços.
+
+2.  **Métricas e Dashboards:**
+    - Crie métricas de negócio e operacionais. Por exemplo:
+      - `automation_success_rate`: Percentual de análises que o agente conseguiu concluir sem erro.
+      - `average_analysis_time`: Tempo médio que o agente leva para analisar um caso.
+      - `total_tokens_used`: Custo operacional do agente.
+    - Use uma ferramenta como **Prometheus/Grafana** para coletar e visualizar essas métricas em um dashboard.
+
 ## 🚀 Como Começar
 
 1.  **Modele o Grafo:** Usando o LangGraph, desenhe o fluxo de estados do agente: `(start) -> (analyze_document) -> (check_compliance) -> (take_action) -> (end)`.
