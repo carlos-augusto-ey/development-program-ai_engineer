@@ -92,6 +92,37 @@ def analyze_text(text_to_analyze: str):
 
 4.  **Testar:** Execute `uvicorn src.main:app --reload` e use a interface do Swagger UI em `http://127.0.0.1:8000/docs` para testar sua API.
 
+## 🏛️ Estrutura do Projeto
+
+Para manter nosso código organizado e escalável, seguimos uma estrutura de pastas clara:
+
+```
+.
+├── .env                # Arquivo para suas credenciais (NÃO versionado)
+├── .gitignore          # Arquivos e pastas ignorados pelo Git
+├── Dockerfile          # Define a imagem Docker da nossa API
+├── README.md           # Este guia que você está lendo
+├── requirements.txt    # Dependências Python do projeto
+├── data/               # Para dados de entrada/saída, se necessário
+├── docs/               # Documentação do projeto (arquitetura, decisões)
+├── knowledge_base/     # Base de conhecimento para o RAG (Projeto 2)
+├── src/                # Onde todo o nosso código-fonte Python vive
+│   ├── __init__.py
+│   ├── main.py         # Ponto de entrada da API (FastAPI app)
+│   ├── api/            # Módulos relacionados à API (endpoints, schemas)
+│   ├── core/           # Configurações centrais e lógica de negócio principal
+│   ├── services/       # Lógica de serviço (ex: chamar o LLM)
+│   └── ...             # Outros módulos como `rag/`, `agents/`
+└── tests/              # Testes automatizados
+```
+
+-   **`src/`**: O coração da aplicação. Todo o código Python vai aqui.
+-   **`src/main.py`**: Define e configura a aplicação FastAPI. É o ponto de entrada que o `uvicorn` executa.
+-   **`src/api/`**: Contém os endpoints da API e os `schemas` (modelos Pydantic) que definem os contratos de dados.
+-   **`src/services/`**: Contém a lógica de negócio desacoplada da API. Por exemplo, a função que chama o LLM.
+-   **`docs/`**: Para toda a documentação que não é o README. Ideal para diagramas de arquitetura e documentos de decisão.
+-   **`tests/`**: Onde os testes unitários e de integração devem ser criados.
+
 ## ✅ Entregáveis
 
 Para concluir este projeto, você deverá entregar:
