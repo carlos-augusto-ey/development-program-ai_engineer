@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*build*/
+*develop-eggs*/
+*dist*/
+*downloads*/
+*eggs*/
+.eggs/
+*lib*/
+*lib64*/
+*parts*/
+*sdist*/
+*var*/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtualenv
+venv/
+env/
+.venv/
+.env/
+
+# Docker
+.dockerignore
+docker-compose.yml
+
+# IDEs and editors
+.idea/
+.vscode/
+*.swp
+*.swo
+*~

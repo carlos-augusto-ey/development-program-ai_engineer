@@ -1,0 +1,31 @@
+**DE:** compliance.interna@fso-ey.com
+**PARA:** analista.junior@fso-ey.com
+**ASSUNTO:** URGENTE: Revisão de recomendação para cliente XPTO
+
+**DATA:** 12/05/2026
+
+Prezado analista,
+
+Por favor, revise a comunicação abaixo que está prestes a ser enviada para o cliente João Silva (ID: 84321), perfil "Conservador".
+
+---
+**Rascunho da Comunicação:**
+
+"Olá, Sr. João!
+
+Analisando seu portfólio, identificamos uma oportunidade única para diversificar seus investimentos e buscar uma rentabilidade superior. Estamos falando do fundo 'Ações Tech Vision', que investe em empresas de tecnologia com alto potencial de crescimento. Além disso, para proteger seu capital da inflação, sugerimos uma pequena alocação no nosso fundo 'Ouro Protegido'.
+
+Acreditamos que essa é uma chance imperdível de dinamizar sua carteira.
+
+O que acha de agendarmos uma conversa?"
+---
+
+**Checklist de Análise Rápida:**
+- [ ] A recomendação está alinhada ao perfil "Conservador" do cliente?
+- [ ] Os produtos "Ações Tech Vision" e "Ouro Protegido" são adequados para este perfil? (Verificar política PAI-CON-v1.2)
+- [ ] A linguagem utilizada ("oportunidade única", "chance imperdível") é permitida pela nossa política de comunicação? (Verificar manual MKT-COM-v1.0)
+
+Aguardamos sua análise de conformidade até o final do dia.
+
+Atenciosamente,
+Equipe de Supervisão de Compliance

@@ -1,0 +1,22 @@
+**Política de Adequação de Perfil de Investimento (Suitability) - Versão 1.2**
+
+**1. Introdução**
+Esta política estabelece as diretrizes para recomendação de produtos de investimento, garantindo a adequação ao perfil de risco de cada cliente (Suitability).
+
+**2. Classificação de Perfis de Cliente**
+- **2.1. Conservador:** Clientes com baixa tolerância a risco, priorizando a preservação de capital.
+- **2.2. Moderado:** Clientes com tolerância a risco equilibrada, buscando retornos acima da inflação com alguma volatilidade.
+- **2.3. Agressivo:** Clientes com alta tolerância a risco, buscando altos retornos e compreendendo o potencial de perdas significativas.
+
+**3. Classificação de Risco dos Produtos**
+- **3.1. Risco Baixo:** Tesouro Selic, CDBs de bancos de primeira linha.
+- **3.2. Risco Médio:** Fundos Multimercado, Fundos de Ações (IBOV), Títulos de Crédito Privado (CRI/CRA).
+- **3.3. Risco Alto:** Ações individuais (ex: PETR4, VALE3), Opções, Derivativos, Fundos de Criptomoedas.
+
+**4. Matriz de Adequação (Regras de Negócio)**
+- **4.1. Clientes Conservadores:** Podem receber recomendações **apenas** de produtos de **Risco Baixo**. A recomendação de produtos de Risco Médio ou Alto é uma violação grave.
+- **4.2. Clientes Moderados:** Podem receber recomendações de produtos de **Risco Baixo e Médio**. A recomendação de produtos de Risco Alto deve ser acompanhada de um "Termo de Ciência de Risco" explícito.
+- **4.3. Clientes Agressivos:** Podem receber recomendações de produtos de **todos os níveis de risco**.
+
+**5. Apêndice**
+- Lista de produtos específicos e sua classificação de risco...

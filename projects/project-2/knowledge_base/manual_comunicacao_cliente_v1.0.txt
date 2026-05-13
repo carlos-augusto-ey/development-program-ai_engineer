@@ -1,0 +1,11 @@
+**Manual de Boas Práticas na Comunicação com o Cliente - Versão 1.0**
+
+**1. Princípios Gerais**
+Toda comunicação deve ser clara, transparente e imparcial.
+
+**2. Proibições**
+- **2.1. Garantia de Retorno:** É estritamente proibido prometer ou garantir qualquer tipo de retorno em produtos de renda variável. Frases como "retorno garantido", "lucro certo" ou "sem risco" são violações diretas.
+- **2.2. Uso de Linguagem Informal:** Evitar o uso de gírias ou linguagem excessivamente informal que possa ser mal interpretada.
+
+**3. Recomendações Obrigatórias**
+- **3.1. Alerta de Risco:** Toda recomendação de produtos de Risco Médio ou Alto deve conter uma frase de alerta, como "Este é um produto de risco [médio/alto] e pode apresentar perdas financeiras."

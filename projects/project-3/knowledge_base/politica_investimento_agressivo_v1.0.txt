@@ -1,0 +1,23 @@
+# Política de Investimento para Perfil Agressivo - v1.0
+
+## 1. Objetivo
+Esta política define as diretrizes para recomendações de investimento destinadas a clientes com perfil de risco "Agressivo". Clientes com este perfil buscam alta rentabilidade e compreendem os riscos associados, incluindo a possibilidade de perda de capital.
+
+## 2. Produtos Permitidos
+Clientes de perfil Agressivo têm acesso a uma gama completa de produtos, incluindo, mas não se limitando a:
+- Renda Fixa (CDB, LCI, LCA, Tesouro Direto)
+- Fundos de Investimento (Multimercado, Ações, Cambial)
+- Ações (mercado nacional e internacional)
+- **Derivativos (Opções e Futuros)**
+- **Criptoativos (Exposição limitada a 5% do portfólio total)**
+- Investimentos no Exterior
+
+## 3. Limites de Concentração
+- **Derivativos:** A alocação em estratégias com derivativos não deve exceder 20% do portfólio total do cliente. O uso deve ser focado em hedge ou especulação controlada.
+- **Criptoativos:** A exposição a criptoativos, direta ou via fundos, não deve ultrapassar 5% do portfólio. A recomendação deve vir acompanhada de um alerta de alta volatilidade.
+- **Ações de uma única empresa:** A concentração em ações de uma única companhia não deve exceder 15% do total alocado em renda variável.
+
+## 4. Comunicação e Alertas
+- Toda recomendação de derivativos ou criptoativos deve ser acompanhada por um "Termo de Ciência de Risco Elevado" a ser assinado pelo cliente.
+- A comunicação deve ser clara sobre o potencial de perda, evitando linguagem que prometa ou garanta retornos.
+- É proibido o uso de termos como "ganho garantido", "retorno certo" ou "oportunidade imperdível" para produtos de alto risco.
