@@ -36,7 +36,7 @@ graph TD
     end
 
     subgraph "Ponto de Chegada"
-        E[Engenheiro de IA Pleno]
+        E[Engenheiro de IA]
     end
 
     A --> B --> C --> D --> E
