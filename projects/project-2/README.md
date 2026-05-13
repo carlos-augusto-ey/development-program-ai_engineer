@@ -42,6 +42,10 @@ Para concluir este projeto, você deverá entregar:
 4.  **Diagrama de Arquitetura:**
     - Uma atualização no arquivo `docs/architecture.md` com um diagrama que ilustre o novo fluxo do RAG (Ingestão e Consulta).
 
+5.  **(Opcional, mas recomendado) Interface de Demonstração:**
+    - Crie uma interface de usuário simples usando **Streamlit**.
+    - A interface deve permitir que um usuário cole um texto de recomendação e veja a análise de conformidade (is_compliant, reason) retornada pelo sistema RAG. Isso é excelente para testar e demonstrar o valor da solução.
+
 ## 🚀 Como Começar
 
 1.  **Escolha seu Vector DB:** Decida se usará uma biblioteca local como ChromaDB (recomendado para começar) ou um serviço gerenciado.
