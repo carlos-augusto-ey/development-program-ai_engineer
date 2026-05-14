@@ -98,7 +98,8 @@ Use a tabela abaixo para navegar diretamente para o guia de cada projeto.
 
 ## 🔗 Recursos e Documentação (Learning Path)
 
-Para se aprofundar nos conceitos que veremos, consulte as documentações oficiais:
+### Documentação Oficial (Nossa Fonte da Verdade)
+Para referências técnicas e detalhes de implementação, consulte sempre a documentação oficial:
 
 - **Python:** [Documentação Oficial do Python 3](https://docs.python.org/3/)
 - **FastAPI:** [Tutorial do FastAPI](https://fastapi.tiangolo.com/tutorial/) - Essencial para os Projetos 1 e 2.
@@ -108,5 +109,14 @@ Para se aprofundar nos conceitos que veremos, consulte as documentações oficia
 - **LangGraph:** [Introdução ao LangGraph](https://langchain-ai.github.io/langgraph/) - O coração do nosso agente no Projeto 3.
 - **Streamlit:** [Documentação do Streamlit](https://docs.streamlit.io/) - Para a criação da interface de demonstração.
 - **OpenTelemetry:** [Documentação do OpenTelemetry](https://opentelemetry.io/docs/) - Para o desafio de observabilidade.
+
+### Guias Conceituais e Tutoriais (Aprofundando o "Porquê")
+Para entender os conceitos por trás das ferramentas, estes recursos são um ótimo ponto de partida:
+
+- **Engenharia de Prompts:** [Guia de Engenharia de Prompt](https://www.promptingguide.ai/pt/introduction) - Um guia completo sobre técnicas de prompting, desde o básico até o avançado.
+- **Arquitetura RAG:** [O que é RAG? (Pinecone)](https://www.pinecone.io/learn/retrieval-augmented-generation/) - Uma explicação clara e visual sobre o que é e por que usar a Geração Aumentada por Recuperação.
+- **Bancos de Dados Vetoriais:** [O que é um Banco de Dados Vetorial? (Elastic)](https://www.elastic.co/what-is/vector-database) - Desmistifica o conceito de embeddings e bancos de dados vetoriais.
+- **GitFlow e Versionamento:** [A Successful Git Branching Model](https://nvie.com/posts/a-successful-git-branching-model/) - O post clássico que introduziu o modelo GitFlow, essencial para trabalho em equipe.
+- **Conventional Commits:** [Especificação do Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) - Aprenda a escrever mensagens de commit claras e padronizadas.
 
 
