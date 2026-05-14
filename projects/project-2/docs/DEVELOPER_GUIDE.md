@@ -75,3 +75,32 @@ A qualidade do nosso projeto depende de uma boa cobertura de testes.
 - **Exemplo (`tests/test_api.py`):**
   - Usar o `TestClient` do FastAPI para fazer chamadas HTTP reais ao seu endpoint `/analyze`.
   - Verificar se a API retorna o status code correto (200, 422, 500, etc.) e se o corpo da resposta está no formato esperado (validado pelo schema Pydantic).
+
+## 4. Versionamento e Padrão de Commits
+
+Um histórico de versionamento limpo é uma forma de documentação e uma ferramenta de colaboração essencial. Adotaremos práticas padrão de mercado para garantir a clareza e a rastreabilidade do nosso trabalho.
+
+### Fluxo de Trabalho com Branches (GitFlow Simplificado)
+
+-   **`main`**: Esta branch é a nossa fonte da verdade. Ela deve conter apenas o código funcional e estável, representando as versões concluídas de cada projeto.
+-   **`feature/<nome-da-feature>`**: Todo novo desenvolvimento, correção ou melhoria deve ser feito em uma branch separada, partindo da `main`.
+    -   **Exemplos de Nomes:** `feature/cria-endpoint-analyze`, `fix/corrige-leitura-env`, `docs/atualiza-readme-projeto1`.
+-   **Pull Requests (PRs):** Ao concluir o trabalho em uma `feature` branch, abra um Pull Request (ou Merge Request) para mesclar as alterações na `main`. Mesmo trabalhando sozinho, este processo simula um ambiente de *code review* e força uma revisão final antes da integração.
+
+### Padrão de Mensagens de Commit (Conventional Commits)
+
+Para manter o histórico legível e automatizável, siga o padrão [Conventional Commits](https://www.conventionalcommits.org/).
+
+**Formato:** `<tipo>(<escopo>): <assunto>`
+
+-   **Tipos Comuns:**
+    -   `feat`: Uma nova funcionalidade (ex: `feat: adiciona endpoint de análise`).
+    -   `fix`: Uma correção de bug (ex: `fix: trata erro de conexão com a API`).
+    -   `docs`: Alterações na documentação (ex: `docs: atualiza o guia do desenvolvedor`).
+    -   `style`: Mudanças que não afetam o significado do código (espaços, formatação).
+    -   `refactor`: Uma mudança no código que não corrige um bug nem adiciona uma feature.
+    -   `test`: Adicionando testes ou corrigindo testes existentes.
+    -   `chore`: Mudanças em processos de build, ferramentas auxiliares, etc.
+
+**Exemplo de uma boa mensagem de commit:**
+`feat(api): implementa schema de resposta para o endpoint /analyze`
