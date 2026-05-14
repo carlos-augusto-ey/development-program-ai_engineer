@@ -18,7 +18,7 @@
   - **Orquestração de Fluxos Multi-step:** Coordenar uma sequência de tarefas (ler, analisar, decidir, agir).
   - **Tool Retrieval e Tool Calling:** O agente terá "ferramentas" à sua disposição (ex: a API do Projeto 2, uma ferramenta para mover arquivos, uma para criar alertas).
   - **Gerenciamento de Estado (Multi-turn State):** Manter o controle sobre o estado de cada documento sendo processado.
-  - **Model Context Protocol (MCP):** Usar um protocolo formal para que os componentes do sistema (orquestrador, ferramentas) se comuniquem de forma estruturada.
+  - **Model Context Protocol (MCP):** FastMCP - Usar um protocolo formal para que os componentes do sistema (orquestrador, ferramentas) se comuniquem de forma estruturada.
   - **Guardrails:** Implementar mecanismos de segurança para garantir que o agente opere dentro de limites seguros.
 
 ## ✅ Entregáveis
