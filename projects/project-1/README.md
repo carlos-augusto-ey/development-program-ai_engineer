@@ -12,63 +12,70 @@
 
 ## ⚙️ Configuração do Ambiente e Conexão com o LLM
 
-Para que nossa API se comunique com o modelo de linguagem (LLM) de forma segura, vamos usar variáveis de ambiente.
+Para que nossa API se comunique com o modelo de linguagem (LLM) de forma segura e robusta, vamos centralizar a lógica de conexão em um cliente reutilizável.
 
 ### 1. Crie o arquivo `.env`
 
-Na raiz desta pasta (`projects/project-1/`), crie um arquivo chamado `.env`. Ele guardará suas credenciais de forma segura.
+Na raiz desta pasta (`projects/project-1/`), crie um arquivo chamado `.env`. Ele guardará suas credenciais de forma segura, seguindo o padrão da biblioteca `openai`.
 
 ```ini
 # projects/project-1/.env
-INCUBATOR_ENDPOINT="coloque-seu-endpoint-aqui"
-INCUBATOR_KEY="coloque-sua-chave-aqui"
-API_VERSION="2023-05-15"
-MODEL_NAME="gpt-4-turbo"
+AZURE_OPENAI_ENDPOINT="seu-endpoint-aqui"
+AZURE_OPENAI_KEY="sua-chave-aqui"
+AZURE_OPENAI_API_VERSION="2024-06-01"
+AZURE_DEPLOYMENT_NAME="seu-deployment-name-aqui"
 ```
 **Importante:** Lembre-se de adicionar o arquivo `.env` ao seu `.gitignore` para nunca enviar suas credenciais para o repositório.
 
 ### 2. Acessando as Configurações no Código
 
-No seu serviço, você usará uma biblioteca como `python-dotenv` para carregar essas variáveis.
+Criamos uma classe `AzureModel` no arquivo `src/core/llm_client.py` que encapsula toda a lógica de conexão. Agora, em outros lugares do seu código, como nos seus serviços, você pode simplesmente importar e usar esta classe.
 
 **Exemplo de implementação em `src/services/compliance_service.py`:**
 
 ```python
-import os
-import requests
-from dotenv import load_dotenv
+from ..core.llm_client import AzureModel
+from ..api.schemas import AnalysisResult, AnalysisRequest # Exemplo de schemas
 
-# Carrega as variáveis do arquivo .env
-load_dotenv()
-
-# A forma segura de obter as credenciais
-incubator_endpoint = os.getenv("INCUBATOR_ENDPOINT")
-incubator_key = os.getenv("INCUBATOR_KEY")
-api_version = os.getenv("API_VERSION")
-model = os.getenv("MODEL_NAME")
-
-def analyze_text(text_to_analyze: str):
+def analyze_recommendation(request: AnalysisRequest) -> AnalysisResult:
     """
-    Envia o texto para o LLM através da API Gateway e retorna a análise.
+    Usa o cliente LLM para analisar uma recomendação de investimento.
     """
-    full_path = f"{incubator_endpoint}/openai/deployments/{model}/chat/completions"
-    
-    headers = { "api-key": incubator_key }
-    params = { "api-version": api_version }
-    body = {
-        "messages": [
-            {"role": "system", "content": "Você é um analista de compliance."},
-            {"role": "user", "content": text_to_analyze}
-        ]
-    }
+    # 1. Instancia o cliente. As configurações são carregadas do .env automaticamente.
+    llm_client = AzureModel()
 
+    # 2. Cria um prompt estruturado para guiar o modelo.
+    prompt = f"""
+    Analise a seguinte recomendação de investimento: '{request.text}'.
+    Verifique se ela é adequada para um cliente com perfil de risco '{request.client_profile}'.
+    Retorne sua análise.
+    """
+
+    # 3. Invoca o modelo.
     try:
-        response = requests.post(full_path, json=body, headers=headers, params=params)
-        response.raise_for_status()  # Lança um erro para status codes ruins (4xx ou 5xx)
-        return response.json()
-    except requests.RequestException as e:
-        print(f"Erro ao chamar a API: {e}")
-        return None
+        response = llm_client.invoke(prompt=prompt)
+        
+        # Aqui você adicionaria a lógica para processar a resposta do LLM
+        # e transformá-la no schema de resultado `AnalysisResult`.
+        # Por exemplo, usando a biblioteca `instructor` para extração de dados.
+        
+        raw_content = response.choices[0].message.content
+        
+        # Exemplo simples de retorno (a ser refinado)
+        return AnalysisResult(
+            is_compliant= "não" not in raw_content.lower(),
+            reason=raw_content,
+            mentioned_products=[]
+        )
+
+    except Exception as e:
+        print(f"Erro ao chamar o LLM: {e}")
+        # Em um caso real, você retornaria uma resposta de erro HTTP.
+        return AnalysisResult(
+            is_compliant=False,
+            reason=f"Falha ao processar a análise: {e}",
+            mentioned_products=[]
+        )
 ```
 
 ## 🚀 Como Começar: Guia Rápido
@@ -85,7 +92,8 @@ def analyze_text(text_to_analyze: str):
     uvicorn[standard]
     pydantic
     python-dotenv
-    requests
+    openai
+    instructor
     ```
 
 3.  **Desenvolver a API:** Siga a estrutura de pastas proposta, implementando a lógica no `main.py`, `services/` e `api/schemas.py`.
