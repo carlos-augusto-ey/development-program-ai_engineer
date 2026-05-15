@@ -8,48 +8,67 @@
 
 **A Dor (Evolução):** A API que construímos no Projeto 1 funciona, mas tem uma limitação crítica: suas regras de negócio estão "congeladas" dentro do prompt. Se uma política de investimento mudar, um desenvolvedor precisa reescrever e reimplantar o código. A análise não é facilmente auditável, pois não podemos apontar para a cláusula exata da política que foi usada.
 
-**Nossa Solução (Fase 2):** Vamos transformar nossa API em um **"Policy-Grounded RAG"**. Antes de pedir ao LLM para analisar uma recomendação, nosso sistema irá primeiro buscar os trechos mais relevantes dos documentos de política (`knowledge_base/`) e os fornecerá como contexto. Isso garante que a decisão seja sempre baseada na documentação oficial e atualizada.
+**Nossa Solução (Fase 2):** Vamos transformar nossa API em um **"Policy-Grounded RAG"**. Antes de pedir ao LLM para analisar uma recomendação, nosso sistema irá primeiro buscar os trechos mais relevantes dos documentos de política e os fornecerá como contexto. Isso garante que a decisão seja sempre baseada na documentação oficial e atualizada.
+
+## 📚 A Base de Conhecimento
+
+Para que nosso sistema RAG se torne um especialista em compliance financeiro, ele será alimentado com documentos oficiais do mercado brasileiro. A pasta `knowledge_base/` deve conter os seguintes tipos de documentos (em formato PDF):
+
+1.  **Códigos de Regulação da ANBIMA:**
+    *   **Fonte:** Site oficial da ANBIMA.
+    *   **Objetivo:** Contêm as regras e melhores práticas para a distribuição de produtos de investimento. São a principal fonte para o dia a dia do compliance.
+    *   **Exemplo:** "Código de Distribuição de Produtos de Investimento".
+
+2.  **Resoluções da CVM (Comissão de Valores Mobiliários):**
+    *   **Fonte:** Site oficial da CVM.
+    *   **Objetivo:** Fornecem o arcabouço legal para o mercado. A mais importante para nosso caso é a que trata de **Suitability** (adequação do produto ao perfil do investidor).
+    *   **Exemplo:** "Resolução CVM 30".
+
+3.  **Documento de Perfil de Risco (API):**
+    *   **Fonte:** O documento `analise_de_perfil_do_investidor.txt` já presente na pasta.
+    *   **Objetivo:** Define as categorias de perfil de risco (Conservador, Moderado, Arrojado) e quais tipos de ativos são adequados para cada um.
 
 ## 🛠️ Tecnologias e Conceitos Chave
 
-- **Backend:** Python 3.11+
-- **Bancos de Dados Vetoriais:** Ferramentas como ChromaDB, FAISS, ou serviços de nuvem para armazenar e consultar embeddings.
-- **Técnicas de IA:**
-  - **Ingestão e Indexação:** O processo de ler, dividir (`chunking`) e vetorizar os documentos da `knowledge_base`.
-  - **Chunking Semântico:** Estratégias para dividir os documentos de forma inteligente, preservando o significado.
-  - **Filtros de Recuperação:** Técnicas para refinar a busca no banco de dados vetorial.
-  - **Strict Grounding:** Forçar o LLM a basear sua resposta exclusivamente no contexto recuperado.
-  - **Técnicas de Re-ranking:** Algoritmos para reordenar os resultados da busca, trazendo os mais relevantes para o topo.
+-   **Backend:** Python 3.11+
+-   **Bancos de Dados Vetoriais:** Ferramentas como ChromaDB, FAISS, ou serviços de nuvem para armazenar e consultar embeddings.
+-   **Técnicas de IA:**
+    -   **Ingestão e Indexação:** O processo de ler, dividir (`chunking`) e vetorizar os documentos da `knowledge_base`.
+    -   **Chunking Semântico:** Estratégias para dividir os documentos de forma inteligente, preservando o significado.
+    -   **Filtros de Recuperação:** Técnicas para refinar a busca no banco de dados vetorial.
+    -   **Strict Grounding:** Forçar o LLM a basear sua resposta exclusivamente no contexto recuperado.
+    -   **Técnicas de Re-ranking:** Algoritmos para reordenar os resultados da busca, trazendo os mais relevantes para o topo.
 
 ## ✅ Entregáveis
 
 Para concluir este projeto, você deverá entregar:
 
-1.  **Pipeline RAG Funcional:**
-    - Um script ou serviço de ingestão que processa os documentos da pasta `knowledge_base/` e os armazena em um banco de dados vetorial.
-    - A lógica da API do Projeto 1 deve ser modificada para:
-      1.  Receber a query.
-      2.  Buscar (`retrieve`) o contexto relevante no banco de dados vetorial.
-      3.  Injetar o contexto no prompt do LLM.
-      4.  Retornar a resposta do LLM, que agora deve incluir a fonte da informação (ex: `source_document: 'politica_adequacao_investimento_v1.2.txt'`).
+1.  **Pipeline de Ingestão de Dados:**
+    -   Um script Python (`src/rag/ingestion.py`) que seja executável e idempotente.
+    -   Ele deve ler todos os PDFs da pasta `knowledge_base/`, aplicar uma estratégia de `chunking` (divisão de texto) e armazenar os `chunks` e seus respectivos `embeddings` em um banco de dados vetorial local (ex: ChromaDB).
 
-2.  **Evidência de Melhoria com Re-ranking:**
-    - Uma análise (pode ser em um Jupyter Notebook ou em um script de teste) que demonstre como o re-ranking melhora a qualidade dos trechos recuperados para uma consulta de teste.
+2.  **API RAG Funcional:**
+    -   A API do Projeto 1 deve ser refatorada. O endpoint `POST /analyze` agora deve orquestrar o fluxo RAG:
+        1.  Receber a requisição com o texto da recomendação.
+        2.  Converter a requisição em uma consulta para o sistema de recuperação.
+        3.  Buscar os `chunks` mais relevantes da base de conhecimento vetorial.
+        4.  (Opcional, mas recomendado) Aplicar um `re-ranker` para melhorar a ordem dos `chunks` recuperados.
+        5.  Construir um prompt enriquecido, contendo as regras e o contexto recuperado.
+        6.  Chamar o LLM com o prompt enriquecido.
+    -   O schema de resposta (Pydantic) deve ser atualizado para incluir as fontes usadas na análise, como `source_document` e `source_chunk_id`.
 
-3.  **Métricas Básicas de Qualidade:**
-    - Definição e medição de pelo menos uma métrica simples para avaliar a qualidade do RAG, como "Precisão da Fonte" (o sistema recuperou o documento correto?).
+3.  **Análise de Qualidade do Retrieval:**
+    -   Um Jupyter Notebook (`notebooks/rag_evaluation.ipynb`) ou script de teste.
+    -   Este notebook deve conter uma análise clara, comparando os resultados da busca **antes e depois** da aplicação de um `re-ranker` para pelo menos 3 consultas de teste diferentes.
+    -   O objetivo é provar com exemplos que o re-ranking está trazendo os resultados mais relevantes para o topo.
 
-4.  **Diagrama de Arquitetura:**
-    - Uma atualização no arquivo `docs/architecture.md` com um diagrama que ilustre o novo fluxo do RAG (Ingestão e Consulta).
-
-5.  **(Opcional, mas recomendado) Interface de Demonstração:**
-    - Crie uma interface de usuário simples usando **Streamlit**.
-    - A interface deve permitir que um usuário cole um texto de recomendação e veja a análise de conformidade (is_compliant, reason) retornada pelo sistema RAG. Isso é excelente para testar e demonstrar o valor da solução.
+4.  **Documentação da Arquitetura:**
+    -   Um diagrama no arquivo `docs/architecture.md` ilustrando o fluxo completo do sistema RAG, desde a ingestão dos documentos até a resposta da API.
 
 ## 🚀 Como Começar
 
 1.  **Escolha seu Vector DB:** Decida se usará uma biblioteca local como ChromaDB (recomendado para começar) ou um serviço gerenciado.
-2.  **Desenvolva o Pipeline de Ingestão:** Crie um script em `src/rag/ingestion.py` que leia os arquivos da `knowledge_base`, aplique uma estratégia de chunking e os insira no banco de dados vetorial.
+2.  **Desenvolva o Pipeline de Ingestão:** Crie o script em `src/rag/ingestion.py`. Pense em como você vai lidar com a limpeza dos dados dos PDFs.
 3.  **Refatore o Serviço de Análise:** Modifique o serviço criado no Projeto 1. Agora, ele não chama o LLM diretamente. Ele primeiro chama um novo "serviço de recuperação" para obter o contexto.
 4.  **Construa o Serviço de Recuperação:** Crie a lógica em `src/rag/retrieval.py` que, dada uma query, a converte em um embedding e consulta o banco de dados vetorial.
 5.  **Implemente o Re-ranking:** Após a recuperação inicial, aplique uma técnica de re-ranking para otimizar a ordem dos resultados antes de enviá-los ao prompt.
