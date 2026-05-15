@@ -21,9 +21,21 @@ Adotamos um ciclo de aprendizado ativo para garantir um desenvolvimento profundo
 -   **Apresentar (Present):** Criar artefatos que demonstrem o valor da solução, como a interface interativa com Streamlit. A capacidade de apresentar o trabalho é crucial.
 -   **Defender (Defend):** Justificar as escolhas técnicas e de arquitetura nos documentos de decisão (`docs/decisions.md`). Esta é a habilidade de um engenheiro experiente: comunicar e defender suas soluções com base em fundamentos sólidos.
 
-## 🚀 A Jornada do Engenheiro de IA
+## 🎯 Cenário de Negócio: O Desafio do Compliance no Setor Financeiro
 
-Este programa é uma jornada de transformação. O participante evolui de um engenheiro de software ou dados para um arquiteto de soluções de IA, dominando novas ferramentas e conceitos a cada etapa.
+Este programa é construído em torno de um caso de uso real e de alto valor no setor financeiro (FSO - Financial Services Office): **a automação da análise de conformidade para recomendações de investimento**.
+
+**A Dor:** Analistas de compliance são um recurso sênior e caro. Eles gastam um tempo enorme revisando manualmente as comunicações entre consultores de investimento e clientes para garantir que as recomendações estejam adequadas ao perfil de risco de cada investidor e sigam as regulamentações do mercado (CVM, ANBIMA). Este processo é:
+- **Lento:** Atrasando a comunicação com o cliente.
+- **Caro:** Utilizando horas de especialistas em tarefas repetitivas.
+- **Sujeito a Falhas:** O cansaço e o volume podem levar a erros humanos.
+- **Não Escalável:** É impossível revisar 100% das interações em tempo real.
+
+**A Nossa Missão:** Construir uma solução de IA que evolui em três fases para resolver este problema, transformando um processo manual em um sistema inteligente e autônomo.
+
+## 🚀 A Jornada do Engenheiro de IA: Do Serviço à Autonomia
+
+Nossa metodologia é uma jornada progressiva. Cada projeto constrói sobre o anterior, culminando em uma solução completa e robusta.
 
 ```mermaid
 graph TD
@@ -31,19 +43,22 @@ graph TD
         A[Engenheiro de<br>Software/Dados]
     end
 
-    subgraph "Projeto 1: API Inteligente"
-        B(API Inteligente Produtizada)
+    subgraph "Projeto 1: Serviço Especialista"
+        B(API de Análise de Conformidade)
+        B_Desc["Recebe um texto e<br>retorna uma análise<br>básica do LLM."]
         B_Techs["- Python & FastAPI<br>- Pydantic Schemas<br>- Prompt Engineering<br>- Docker"]
     end
 
-    subgraph "Projeto 2: RAG Confiável"
-        C(RAG Confiável com Re-ranking)
+    subgraph "Projeto 2: Especialista com Memória"
+        C(API com RAG)
+        C_Desc["Conecta a API a uma<br>base de conhecimento<br>com regras da CVM e ANBIMA."]
         C_Techs["- Vector DBs<br>- Chunking Semântico<br>- Retrieval & Re-ranking<br>- Grounding"]
     end
 
     subgraph "Projeto 3: Agente Autônomo"
-        D(Agente Inteligente para Automação)
-        D_Techs["- LangGraph<br>- Orquestração Multi-step<br>- Tool Calling<br>- LLMOps (Observabilidade)"]
+        D(Agente de Compliance)
+        D_Desc["Orquestra o fluxo: monitora,<br>analisa com a API RAG,<br>registra e notifica."]
+        D_Techs["- LangGraph / FastMCP<br>- Orquestração Multi-step<br>- Tool Calling<br>- LLMOps (Observabilidade)"]
     end
 
     subgraph "Ponto de Chegada"
@@ -51,6 +66,9 @@ graph TD
     end
 
     A --> B --> C --> D --> E
+    B -- Evolui para --> C
+    C -- Vira ferramenta para --> D
+    
     B --- B_Techs
     C --- C_Techs
     D --- D_Techs
