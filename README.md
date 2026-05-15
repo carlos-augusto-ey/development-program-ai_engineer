@@ -1,4 +1,4 @@
-# Programa de Formação – Engenheiro de IA 🤖
+# Programa de Aprendizado – Engenheiro de IA 🤖
 
 **IA Generativa, Agentes Inteligentes e Engenharia de Software para Produção**
 
